@@ -17,7 +17,7 @@ const app = new Vue({
       this.specialAttackCooldown = 0;
       this.isGameOver = false;
     },
-    createGameLog(content) {
+    createGameLog(content, agent) {
       const timestamp = new Date();
       const hours = timestamp.getHours();
       const minutes = timestamp.getMinutes();
@@ -25,14 +25,12 @@ const app = new Vue({
 
       const newGameLog = {
         timestamp: `
-          ${hours < 10 ? 0 : ''
-          }${hours
-          }:${minutes < 10 ? 0 : ''
-          }${minutes
-          }:${seconds < 10 ? 0 : ''
+          ${hours < 10 ? 0 : ''}${hours}:${minutes < 10 ? 0 : ''}${minutes}:${
+          seconds < 10 ? 0 : ''
           }${seconds}
         `,
         content,
+        agent,
       };
 
       this.gameLog.unshift(newGameLog);
@@ -52,7 +50,7 @@ const app = new Vue({
         this.playerHealth += healing;
       }
 
-      this.createGameLog(`Player restored ${healing}hp.`);
+      this.createGameLog(`Player restored ${healing}hp.`, 'player');
     },
     playerNormalAttack() {
       const playerAttack = Math.floor(Math.random() * 5) + 1;
@@ -60,6 +58,7 @@ const app = new Vue({
 
       this.createGameLog(
         `Player attacked Monster and dealt ${playerAttack}pkt of damage.`,
+        'player',
       );
     },
     playerSpecialAttack() {
@@ -69,13 +68,17 @@ const app = new Vue({
 
       this.createGameLog(
         `Player dealt ${playerAttack}pkt damage to Monster using special attack.`,
+        'player',
       );
     },
     monsterAttacks() {
       const monsterAttack = Math.floor(Math.random() * 5) + 1;
       this.playerHealth -= monsterAttack;
 
-      this.createGameLog(`Monster dealt ${monsterAttack}pkt damage to Player.`);
+      this.createGameLog(
+        `Monster dealt ${monsterAttack}pkt damage to Player.`,
+        'monster',
+      );
     },
     nextTurn(type) {
       this.monsterAttacks();

@@ -95,6 +95,15 @@ button[disabled]:hover {
 
 .game-log {
   margin: 0.3rem 0;
+  background: lightblue;
+}
+
+.game-log.player {
+  background: lightgreen;
+}
+
+.game-log.monster {
+  background: lightcoral;
 }
 
 .game-log--empty {

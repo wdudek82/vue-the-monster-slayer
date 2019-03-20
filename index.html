@@ -97,8 +97,8 @@
         <p v-if="gameLog.length === 0" class="game-log--empty">empty</p>
         <p
             v-else
-            v-for="{ id, timestamp, content } in gameLog"
-            class="game-log"
+            v-for="{ id, timestamp, content, agent } in gameLog"
+            :class="['game-log', agent]"
         >
           [ {{ timestamp }} ] {{ content }}
         </p>
