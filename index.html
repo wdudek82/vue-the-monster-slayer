@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="main.css" />
+  <title>The Monster Slayer</title>
+</head>
+<body>
+<div id="app" class="container">
+  <header>
+    <h1>{{ gameTitle }}</h1>
+  </header>
+
+  <section class="game-board">
+    <article class="player">
+      <h2>You</h2>
+      <div class="healthbar__container">
+        <div
+            class="healthbar__bar"
+            :style="getHealthBarStyles(playerHealth)"
+        >
+          <div class="healthbar__label">{{ playerHealth }}</div>
+        </div>
+      </div>
+    </article>
+    <article class="monster">
+      <h2>Monster</h2>
+      <div class="healthbar__container">
+        <div
+            class="healthbar__bar"
+            :style="getHealthBarStyles(monsterHealth)"
+        >
+          <div class="healthbar__label">{{ monsterHealth }}</div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="game-options">
+    <article v-if="!isGameStarted">
+      <button
+          type="button"
+          role="button"
+          class="btn"
+          @click="toggleGameStarted"
+      >
+        Start new game
+      </button>
+    </article>
+    <article v-else>
+      <button type="button" role="button" class="btn" @click="attack('normal')">Attack!</button>
+      <button type="button" role="button" class="btn" @click="attack('special')">
+        Special Attack!!
+      </button>
+      <button type="button" role="button" class="btn">Heal</button>
+      <button
+          type="button"
+          role="button"
+          class="btn"
+          @click="toggleGameStarted"
+      >
+        Run!
+      </button>
+    </article>
+  </section>
+</div>
+
+<script src="http://unpkg.com/vue/dist/vue.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
