@@ -48,20 +48,62 @@
       </button>
     </article>
     <article v-else>
-      <button type="button" role="button" class="btn" @click="attack('normal')">Attack!</button>
-      <button type="button" role="button" class="btn" @click="attack('special')">
-        Special Attack!!
+      <button
+          type="button"
+          role="button"
+          class="btn"
+          @click="nextTurn('normal')"
+          :disabled="isGameOver"
+      >
+        Attack!
       </button>
-      <button type="button" role="button" class="btn">Heal</button>
+      <button
+          type="button"
+          role="button"
+          class="btn"
+          @click="nextTurn('special')"
+          :disabled="specialAttackCooldown > 0 || isGameOver"
+      >
+        Special Attack!!
+        <span v-if="specialAttackCooldown > 0"
+        >({{ specialAttackCooldown}})</span
+        >
+      </button>
+      <button
+          type="button"
+          role="button"
+          class="btn"
+          @click="nextTurn('heal')"
+          :disabled="isGameOver"
+      >
+        Heal
+      </button>
       <button
           type="button"
           role="button"
           class="btn"
           @click="toggleGameStarted"
       >
-        Run!
+        <span v-if="!isGameOver">Run!</span>
+        <span v-else>Restart Game</span>
       </button>
     </article>
+  </section>
+
+  <section id="game-log--board">
+    <fieldset>
+      <legend>Game Log</legend>
+      <div>
+        <p v-if="gameLog.length === 0" class="game-log--empty">empty</p>
+        <p
+            v-else
+            v-for="{ id, timestamp, content } in gameLog"
+            class="game-log"
+        >
+          [ {{ timestamp }} ] {{ content }}
+        </p>
+      </div>
+    </fieldset>
   </section>
 </div>
 
