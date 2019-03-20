@@ -89,6 +89,7 @@ button[disabled]:hover {
 #game-log--board div {
   height: 92%;
   border: 1px solid #ccc;
+  padding: 0 0.5rem;
   overflow: auto;
 }
 
