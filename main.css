@@ -50,6 +50,30 @@ h2 {
   box-shadow: none;
 }
 
+.special-attack {
+  background: #ffc600;
+}
+
+.special-attack:hover {
+  background: #ffbd00;
+}
+
+.special-attack:active {
+  background: #ffab00;
+}
+
+.healing {
+  background: #ffcad8;
+}
+
+.healing:hover {
+  background: #ffb5bc;
+}
+
+.healing:active {
+  background: #ffa3a8;
+}
+
 /* Healthbar */
 .healthbar__container {
   position: relative;

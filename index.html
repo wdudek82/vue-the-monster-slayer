@@ -60,7 +60,7 @@
       <button
           type="button"
           role="button"
-          class="btn"
+          class="btn special-attack"
           @click="nextTurn('special')"
           :disabled="specialAttackCooldown > 0 || isGameOver"
       >
@@ -72,7 +72,7 @@
       <button
           type="button"
           role="button"
-          class="btn"
+          class="btn healing"
           @click="nextTurn('heal')"
           :disabled="isGameOver"
       >
