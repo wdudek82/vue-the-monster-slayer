@@ -1,11 +1,11 @@
 const app = new Vue({
-  el: "#app",
+  el: '#app',
   data: {
-    gameTitle: "The Monster Slayer",
+    gameTitle: 'The Monster Slayer',
     isGameStarted: false,
     specialAttackCooldown: 0,
     playerHealth: 100,
-    monsterHealth: 100
+    monsterHealth: 100,
   },
   methods: {
     toggleGameStarted() {
@@ -18,23 +18,25 @@ const app = new Vue({
       this.playerHealth -= Math.floor(Math.random() * 4) + 1;
 
       switch (type) {
-        case "normal":
+        case 'normal':
           this.monsterHealth -= Math.floor(Math.random() * 4) + 1;
           break;
-        case "special":
+        case 'special':
           this.monsterHealth -= 3 + Math.floor(Math.random() * 4);
           break;
+        case 'heal':
+          break;
         default:
-          console.log("Not implemented");
+          console.log('Not implemented');
       }
     },
     healthBarStyles(health) {
       if (health > 70) {
-        return { bgColor: "green", color: "#fff" };
+        return { bgColor: 'green', color: '#fff' };
       } else if (health > 30) {
-        return { bgColor: "orange", color: "#333" };
+        return { bgColor: 'orange', color: '#333' };
       } else {
-        return { bgColor: "red", color: "#333" };
+        return { bgColor: 'red', color: '#333' };
       }
     },
     getHealthBarStyles(health) {
@@ -44,8 +46,8 @@ const app = new Vue({
         width: `${health}%`,
         background: styleObj.bgColor,
         color: styleObj.color,
-        transition: "width 500ms ease-in-out"
+        transition: 'width 500ms ease-in-out',
       };
-    }
-  }
+    },
+  },
 });
